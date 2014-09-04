@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FlashCard</string>
+    <string name="add_card_name">FlashCard</string>
+    <string name="app_title">Flash Card App</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_new">New Package</string>
+    <string name="action_open">Open Package</string>
+
+    <string name="button_main_1">Manage Cards</string>
+    <string name="button_main_2">Review Mode</string>
+    <string name="button_main_3">Study Mode</string>
+
+    <string name="button_manager_1">New Package</string>
+    <string name="button_manager_2">Open Package</string>
+    <string name="button_manager_3">\?????</string>
+
+    <string name="add_card_1">Question:</string>
+    <string name="add_card_2">Answer:</string>
+
+    <string name="button_add_card_1">Previous</string>
+    <string name="button_add_card_2">Next</string>
+    <string name="button_add_card_3">New Card</string>
+    <string name="button_add_card_4">Clear</string>
+    <string name="button_add_card_5">Add/Update</string>
+
+    <string name="button_save_1">Save</string>
+    <string name="button_delete_1">Delete</string>
+</resources>
