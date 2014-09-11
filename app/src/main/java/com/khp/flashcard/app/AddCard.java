@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Concerns:
  *      - Extreme case when all cards are deleted from current set. Check New Card function
- *      - Sync with GitHub
+ *      - Sync with GitHub1
  */
 public class AddCard extends ActionBarActivity {
 
