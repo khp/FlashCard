@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\KHP\Documents\GitHub\FlashCard" />
-            <option value="C:\Users\KHP\Documents\GitHub\FlashCard\app" />
+            <option value="D:\AndroidStudioProjects\FlashCard" />
+            <option value="D:\AndroidStudioProjects\FlashCard\app" />
           </set>
         </option>
       </GradleProjectSettings>
