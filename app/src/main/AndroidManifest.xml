@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:logo="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -36,10 +36,34 @@
         <activity
             android:name=".AddCard"
             android:label="@string/add_card_name"
-            android:parentActivityName="com.khp.flashcard.app.CardManager">
+            android:parentActivityName="com.khp.flashcard.app.Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.CardManager" />
+                android:value="com.khp.flashcard.app.Main" />
+        </activity>
+        <activity
+            android:name=".ReviewMode"
+            android:label="@string/app_name"
+            android:parentActivityName="com.khp.flashcard.app.ReviewLoad">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khp.flashcard.app.ReviewLoad" />
+        </activity>
+        <activity
+            android:name=".ReviewLoad"
+            android:label="@string/app_name"
+            android:parentActivityName="com.khp.flashcard.app.Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khp.flashcard.app.Main" />
+        </activity>
+        <activity
+            android:name=".ActiveLoad"
+            android:label="@string/app_name"
+            android:parentActivityName="com.khp.flashcard.app.Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khp.flashcard.app.Main" />
         </activity>
         <activity
             android:name=".LoadPackage"

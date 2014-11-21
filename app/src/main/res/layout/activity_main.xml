@@ -4,25 +4,41 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_main_1"
-        android:id="@+id/buttonMain1"
-        android:layout_gravity="center_horizontal" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/main_title"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20pt"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_main_2"
-        android:id="@+id/buttonMain2"
-        android:layout_gravity="center_horizontal" />
+        android:text="@string/button_main_review"
+        android:id="@+id/buttonMainReview"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40pt"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_main_3"
-        android:id="@+id/buttonMain3"
-        android:layout_gravity="center_horizontal" />
+        android:text="@string/button_main_active"
+        android:id="@+id/buttonMainActive"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20pt"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_main_manage"
+        android:id="@+id/buttonMainManage"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20pt"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
 
 </LinearLayout>

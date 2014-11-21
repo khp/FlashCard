@@ -10,6 +10,7 @@
     <style name="AppTheme.ActionBar" parent ="Theme.AppCompat.Light.DarkActionBar">
 
 
+
     </style>
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light">
         <item name="android:windowFrame">@null</item>

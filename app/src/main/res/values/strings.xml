@@ -7,10 +7,14 @@
     <string name="action_settings">Settings</string>
     <string name="action_new">New Package</string>
     <string name="action_open">Open Package</string>
+    <string name="action_save">Save Package</string>
 
-    <string name="button_main_1">Manage Cards</string>
-    <string name="button_main_2">Review Mode</string>
-    <string name="button_main_3">Study Mode</string>
+    <string name="main_title">FlashCard</string>
+    <string name="button_main_manage">Manage Cards</string>
+    <string name="button_main_review">Review Cards</string>
+    <string name="button_main_active">Active Study</string>
+
+    <string name="review_load_heading">Pick a deck to review</string>
 
     <string name="button_manager_1">New Package</string>
     <string name="button_manager_2">Open Package</string>

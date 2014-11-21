@@ -17,16 +17,30 @@ public class Main extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        final Button button1 = (Button) findViewById(R.id.buttonMain1);
-        button1.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-               Intent i = new Intent(getApplicationContext(), CardManager.class);
-               startActivity(i);
-           }
+        final Button buttonReview = (Button) findViewById(R.id.buttonMainReview);
+        buttonReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ReviewLoad.class);
+                startActivity(i);
+            }
         });
-
+        final Button buttonActive = (Button) findViewById(R.id.buttonMainActive);
+        buttonActive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ActiveLoad.class);
+                startActivity(i);
+            }
+        });
+        final Button buttonAdd = (Button) findViewById(R.id.buttonMainManage);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddCard.class);
+                startActivity(i);
+            }
+        });
     }
 
 

@@ -16,11 +16,6 @@ import java.util.ArrayList;
  * Created by KHP on 04/07/2014.
  */
 
-/**
- * Concerns:
- *      - Extreme case when all cards are deleted from current set. Check New Card function
- *      - Sync with GitHub1
- */
 public class AddCard extends ActionBarActivity {
 
     private static final String TAG = "AddCard";
@@ -56,7 +51,7 @@ public class AddCard extends ActionBarActivity {
 
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_card_actions, menu);
         return true;
     }
@@ -80,6 +75,10 @@ public class AddCard extends ActionBarActivity {
                 is.putExtra("Card List", CardList);
                 startActivityForResult(is, SAVE_REQUEST);
                 return true;
+            case android.R.id.home:
+                Intent ih = new Intent(getApplicationContext(), Main.class);
+                startActivity(ih);
+                return true;
             default:
                 return true;
         }
@@ -90,7 +89,9 @@ public class AddCard extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
 
-
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         final Button newButton = (Button) findViewById(R.id.addCardNewButton);
         final Button clearButton = (Button) findViewById(R.id.addCardClearButton);
