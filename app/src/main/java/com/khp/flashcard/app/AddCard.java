@@ -1,8 +1,8 @@
 package com.khp.flashcard.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by KHP on 04/07/2014.
  */
 
-public class AddCard extends ActionBarActivity {
+public class AddCard extends Activity {
 
     private static final String TAG = "AddCard";
     static final int OPEN_REQUEST = 0;
@@ -24,20 +24,20 @@ public class AddCard extends ActionBarActivity {
     protected int cardPosition = 0;
     private boolean newCard;
     private int test;
-    Card currentCard;
-    EditText question;
-    EditText answer;
-    ArrayList<Card> CardList;
+    private Card currentCard;
+    private EditText question;
+    private EditText answer;
+    private ArrayList<Card> cardList;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == RESULT_OK) {
 
-            CardList = (ArrayList<Card>) data.getExtras().get("result");
-            Log.i(TAG, "Answer: " + CardList.get(0).getQuestion());
+            cardList = (ArrayList<Card>) data.getExtras().get("result");
+            Log.i(TAG, "Answer: " + cardList.get(0).getQuestion());
             cardPosition = 0;
-            currentCard = CardList.get(cardPosition);
+            currentCard = cardList.get(cardPosition);
             question.setText(currentCard.getQuestion());
             answer.setText(currentCard.getAnswer());
             }
@@ -59,7 +59,7 @@ public class AddCard extends ActionBarActivity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_package:
-                CardList = new ArrayList<Card>();
+                cardList = new ArrayList<Card>();
                 cardPosition = 0;
                 currentCard = null;
                 answer.setText("");
@@ -67,12 +67,12 @@ public class AddCard extends ActionBarActivity {
                 return true;
             case R.id.action_open_package:
                 Intent il = new Intent(getApplicationContext(), LoadPackage.class);
-                il.putExtra("Card List", CardList);
+                il.putExtra("Card List", cardList);
                 startActivityForResult(il, OPEN_REQUEST);
                 return true;
             case R.id.action_save_package:
                 Intent is = new Intent(getApplicationContext(), SavePackage.class);
-                is.putExtra("Card List", CardList);
+                is.putExtra("Card List", cardList);
                 startActivityForResult(is, SAVE_REQUEST);
                 return true;
             case android.R.id.home:
@@ -89,10 +89,6 @@ public class AddCard extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         final Button newButton = (Button) findViewById(R.id.addCardNewButton);
         final Button clearButton = (Button) findViewById(R.id.addCardClearButton);
         final Button addButton = (Button) findViewById(R.id.addCardAddButton);
@@ -108,15 +104,15 @@ public class AddCard extends ActionBarActivity {
         nextButton.setOnClickListener(new NextCardListener());
         prevButton.setOnClickListener(new PrevCardListener());
 
-        // Set currentCard as CardList[0] if loaded, otherwise assume new
+        // Set currentCard as cardList[0] if loaded, otherwise assume new
 
-        if (CardList == null) {
-            CardList = new ArrayList<Card>();
+        if (cardList == null) {
+            cardList = new ArrayList<Card>();
             newCard = true;
         }
         else {
             newCard = false;
-            currentCard = CardList.get(cardPosition);
+            currentCard = cardList.get(cardPosition);
             question.setText(currentCard.getQuestion());
             answer.setText(currentCard.getAnswer());
         }
@@ -127,7 +123,7 @@ public class AddCard extends ActionBarActivity {
     public class NewCardListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            // If CardList is empty, cardPosition must be 0
+            // If cardList is empty, cardPosition must be 0
             if (newCard == true) {
                 question.setText(null);
                 answer.setText(null);
@@ -156,18 +152,18 @@ public class AddCard extends ActionBarActivity {
         public void onClick(View view) {
             // If BOTH fields are not empty
             if ((!question.getText().equals("")) && (!answer.getText().equals(""))) {
-                // If current index in CardList exists
+                // If current index in cardList exists
                 if (newCard) {
                     currentCard = new Card(question.getText().toString(), answer.getText().toString());
-                    CardList.add(cardPosition, currentCard);
+                    cardList.add(cardPosition, currentCard);
                     newCard = false;
                     Log.i(TAG, "New card added");
                 }
-                // If current index in CardList does NOT exist
+                // If current index in cardList does NOT exist
                 else {
                     Card card = new Card(question.getText().toString(), answer.getText().toString());
                     currentCard = card;
-                    CardList.set(cardPosition, card);
+                    cardList.set(cardPosition, card);
                     Log.i(TAG, "Additional card added");
                 }
             }
@@ -180,14 +176,14 @@ public class AddCard extends ActionBarActivity {
     public class NextCardListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if (!CardList.isEmpty()) {
-                if (cardPosition + 1 == CardList.size()) {
+            if (!cardList.isEmpty()) {
+                if (cardPosition + 1 == cardList.size()) {
                     setCardPosition(0);
                 } else {
                     setCardPosition(cardPosition + 1);
                 }
-                question.setText(CardList.get(cardPosition).getQuestion());
-                answer.setText(CardList.get(cardPosition).getAnswer());
+                question.setText(cardList.get(cardPosition).getQuestion());
+                answer.setText(cardList.get(cardPosition).getAnswer());
             }
         }
     }
@@ -195,14 +191,14 @@ public class AddCard extends ActionBarActivity {
     public class PrevCardListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if (!CardList.isEmpty()) {
+            if (!cardList.isEmpty()) {
                 if (cardPosition == 0) {
-                    setCardPosition(CardList.size() - 1);
+                    setCardPosition(cardList.size() - 1);
                 } else {
                     setCardPosition(cardPosition - 1);
                 }
-                question.setText(CardList.get(cardPosition).getQuestion());
-                answer.setText(CardList.get(cardPosition).getAnswer());
+                question.setText(cardList.get(cardPosition).getQuestion());
+                answer.setText(cardList.get(cardPosition).getAnswer());
             }
         }
     }

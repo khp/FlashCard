@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,28 +27,36 @@ import java.util.List;
  */
 public class LoadPackage extends Activity {
     private final static String TAG = "LoadPackage";
-    ArrayList<Card> CardList;
-    String[] SavedFilesArray;
-    ArrayList<String> SavedFilesList;
-    ListView List;
-    MyAdapter adapter;
+    private ArrayList<Card> cardList;
+    private String[] savedFilesArray;
+    private ArrayList<String> savedFilesList;
+    private ListView listView;
+    private MyAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        CardList = (ArrayList) getIntent().getExtras().get("Card List");
-        SavedFilesArray = fileList();
-        SavedFilesList = new ArrayList<String>();
-        for (int i = 0; i < SavedFilesArray.length; i++) {
-            SavedFilesList.add(SavedFilesArray[i]);
+        cardList = (ArrayList) getIntent().getExtras().get("Card listView");
+        savedFilesArray = fileList();
+        savedFilesList = new ArrayList<String>();
+        for (int i = 0; i < savedFilesArray.length; i++) {
+            savedFilesList.add(savedFilesArray[i]);
         }
-        List = (ListView) findViewById(R.id.loadListView);
-        adapter = new MyAdapter(this, SavedFilesList);
-        List.setAdapter(adapter);
-        List.setClickable(true);
+        listView = (ListView) findViewById(R.id.loadListView);
+        adapter = new MyAdapter(this, savedFilesList);
+        listView.setAdapter(adapter);
+        listView.setClickable(true);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
 
@@ -73,10 +82,10 @@ public class LoadPackage extends Activity {
                 @Override
                 public void onClick(View view) {
                     String fDelete = textView1.getText().toString();
-                    int temp = SavedFilesList.indexOf(fDelete);
-                    Log.i(TAG, "Position: " + SavedFilesList.get(temp));
+                    int temp = savedFilesList.indexOf(fDelete);
+                    Log.i(TAG, "Position: " + savedFilesList.get(temp));
                     deleteFile(fDelete);
-                    SavedFilesList.remove(SavedFilesList.indexOf(fDelete));
+                    savedFilesList.remove(savedFilesList.indexOf(fDelete));
                     FilesList.remove(FilesList.indexOf(fDelete));
                     adapter.notifyDataSetChanged();
                 }
@@ -96,11 +105,11 @@ public class LoadPackage extends Activity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    CardList = (ArrayList<Card>) ois.readObject();
+                    cardList = (ArrayList<Card>) ois.readObject();
                     ois.close();
-                    Log.i(TAG, "Question: " + CardList.get(0).getQuestion());
+                    Log.i(TAG, "Question: " + cardList.get(0).getQuestion());
                     Intent returnIntent = new Intent();
-                    returnIntent.putExtra("result", CardList);
+                    returnIntent.putExtra("result", cardList);
                     setResult(RESULT_OK, returnIntent);
                     finish();
                 } catch (FileNotFoundException e) {

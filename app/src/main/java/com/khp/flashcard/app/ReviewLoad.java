@@ -1,9 +1,9 @@
 package com.khp.flashcard.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,27 +20,27 @@ import java.io.ObjectInputStream;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
-public class ReviewLoad extends ActionBarActivity {
+public class ReviewLoad extends Activity {
 
-    String[] SavedFilesArray;
-    ArrayList<String> SavedFilesList;
-    ListView List;
-    MyAdapter adapter;
-    ArrayList<Card> CardList;
+    private String[] savedFilesArray;
+    private ArrayList<String> savedFilesList;
+    private ListView listView;
+    private MyAdapter adapter;
+    private ArrayList<Card> cardList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_load);
 
-        SavedFilesArray = fileList();
-        SavedFilesList = new ArrayList<String>();
-        for (int i = 0; i < SavedFilesArray.length; i++) {
-            SavedFilesList.add(SavedFilesArray[i]);
+        savedFilesArray = fileList();
+        savedFilesList = new ArrayList<String>();
+        for (int i = 0; i < savedFilesArray.length; i++) {
+            savedFilesList.add(savedFilesArray[i]);
         }
-        List = (ListView) findViewById(R.id.loadReviewListView);
-        adapter = new MyAdapter(this, SavedFilesList);
-        List.setAdapter(adapter);
-        List.setClickable(true);
+        listView = (ListView) findViewById(R.id.loadReviewListView);
+        adapter = new MyAdapter(this, savedFilesList);
+        listView.setAdapter(adapter);
+        listView.setClickable(true);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,10 +91,10 @@ public class ReviewLoad extends ActionBarActivity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    CardList = (ArrayList<Card>) ois.readObject();
+                    cardList = (ArrayList<Card>) ois.readObject();
                     ois.close();
                     Intent i = new Intent(getApplicationContext(), ReviewMode.class);
-                    i.putExtra("result", CardList);
+                    i.putExtra("Card List", cardList);
                     startActivity(i);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

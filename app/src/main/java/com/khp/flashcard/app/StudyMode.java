@@ -1,12 +1,12 @@
 package com.khp.flashcard.app;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 
 /**
  * Created by KHP on 04/07/2014.
  */
-public class StudyMode extends ActionBarActivity {
+public class StudyMode extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

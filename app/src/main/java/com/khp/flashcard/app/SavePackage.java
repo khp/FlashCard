@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -24,22 +25,22 @@ import java.util.List;
  */
 public class SavePackage extends Activity {
     private final static String TAG = "SavePackage";
-    ArrayList<Card> CardList;
-    String[] SavedFilesArray;
-    ArrayList<String> SavedFilesList;
+    private ArrayList<Card> cardList;
+    private String[] savedFilesArray;
+    private ArrayList<String> savedFilesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
-        CardList = (ArrayList) getIntent().getExtras().get("Card List");
+        cardList = (ArrayList) getIntent().getExtras().get("Card List");
         final ListView List = (ListView) findViewById(R.id.saveListView);
-        SavedFilesArray = fileList();
-        SavedFilesList = new ArrayList();
-        for (int i = 0; i < SavedFilesArray.length; i++) {
-            SavedFilesList.add(SavedFilesArray[i]);
+        savedFilesArray = fileList();
+        savedFilesList = new ArrayList();
+        for (int i = 0; i < savedFilesArray.length; i++) {
+            savedFilesList.add(savedFilesArray[i]);
         }
-        final MyAdapter adapter = new MyAdapter(this, SavedFilesList);
+        final MyAdapter adapter = new MyAdapter(this, savedFilesList);
         List.setAdapter(adapter);
 
         final EditText saveName = (EditText) findViewById(R.id.saveEditText1);
@@ -51,7 +52,7 @@ public class SavePackage extends Activity {
                     try {
                         FileOutputStream fos = getApplicationContext().openFileOutput(saveName.getText().toString(), 0);
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
-                        oos.writeObject(CardList);
+                        oos.writeObject(cardList);
                         oos.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -62,6 +63,14 @@ public class SavePackage extends Activity {
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
 
     private class MyAdapter extends ArrayAdapter<String> {
 

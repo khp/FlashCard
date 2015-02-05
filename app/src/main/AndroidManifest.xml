@@ -3,7 +3,7 @@
     package="com.khp.flashcard.app" >
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-sdk android:minSdkVersion="14" />
     <application
         android:allowBackup="true"
         android:logo="@drawable/logo"

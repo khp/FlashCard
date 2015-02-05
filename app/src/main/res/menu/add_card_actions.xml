@@ -6,21 +6,21 @@
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:showAsAction="never" />
 
     <item
         android:id="@+id/action_new_package"
         android:icon="@drawable/ic_action_new"
         android:title="@string/action_new"
-        app:showAsAction="always"/>
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_save_package"
         android:icon="@drawable/ic_action_save"
         android:title="@string/action_save"
-        app:showAsAction="always"/>
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_open_package"
         android:icon="@drawable/ic_action_collection"
         android:title="@string/action_open"
-        app:showAsAction="always"/>
+        android:showAsAction="always"/>
 </menu>
