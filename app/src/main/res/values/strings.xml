@@ -31,4 +31,8 @@
 
     <string name="button_save_1">Save</string>
     <string name="button_delete_1">Delete</string>
+
+    <string name="button_review_1">Flip</string>
+    <string name="button_review_2">Prev</string>
+    <string name="button_review_3">Next</string>
 </resources>
