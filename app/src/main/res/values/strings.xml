@@ -35,4 +35,8 @@
     <string name="button_review_1">Flip</string>
     <string name="button_review_2">Prev</string>
     <string name="button_review_3">Next</string>
+
+    <string name="button_active_1">Flip</string>
+    <string name="button_active_2">Correct</string>
+    <string name="button_active_3">Incorrect</string>
 </resources>
