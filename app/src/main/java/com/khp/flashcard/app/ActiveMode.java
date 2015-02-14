@@ -15,6 +15,7 @@ import java.util.Collections;
 public class ActiveMode extends Activity {
 
     private TextView topDisplay;
+    private TextView count;
     private ArrayList<Card> cardList;
     private ArrayList<Card> shuffledCardList;
     private ArrayList<Card> wrongCardList;
@@ -29,7 +30,7 @@ public class ActiveMode extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review);
+        setContentView(R.layout.activity_active);
         cardList = (ArrayList) getIntent().getExtras().get("Card List");
 
         shuffledCardList = new ArrayList<>();
@@ -51,6 +52,8 @@ public class ActiveMode extends Activity {
         currentIndex = 0;
         topDisplay = (TextView) findViewById(R.id.topTextView);
         topDisplay.setText(shuffledCardList.get(0).getQuestion());
+        count = (TextView) findViewById(R.id.activeCountTextView);
+        resetCount();
         isQuestion = true;
 
     }
@@ -59,6 +62,10 @@ public class ActiveMode extends Activity {
         shuffledCardList.clear();
         shuffledCardList.addAll(cardList);
         Collections.shuffle(shuffledCardList);
+    }
+
+    public void resetCount() {
+        this.count.setText(shuffledCardList.size() + wrongCardList.size() + "/" + cardList.size());
     }
 
     public class FlipCardListener implements View.OnClickListener {
@@ -76,27 +83,33 @@ public class ActiveMode extends Activity {
 
     public class CorrectCardListener implements View.OnClickListener {
         public void onClick(View view) {
-            if (shuffledCardList.size() > 0) {
+            if (shuffledCardList.size() > 1) {
                 shuffledCardList.remove(0);
-            } else if (currentCycle < totalCycle) {
+            } else if (currentCycle < totalCycle && wrongCardList.size() == 0) {
                 currentCycle++;
                 resetShuffledDeck();
             } else {
-                // end conditions
+                shuffledCardList.remove(0);
+                shuffledCardList.addAll(wrongCardList);
+                wrongCardList.clear();
             }
             topDisplay.setText(shuffledCardList.get(0).getQuestion());
+            isQuestion = true;
+            resetCount();
         }
     }
 
     public class IncorrectCardListener implements View.OnClickListener {
         public void onClick(View view) {
             wrongCardList.add(shuffledCardList.get(0));
-            if (shuffledCardList.size() > 0) {
-                shuffledCardList.remove(0);
-            } else {
+            shuffledCardList.remove(0);
+            if (shuffledCardList.size() == 0) {
                 shuffledCardList.addAll(wrongCardList);
+                wrongCardList.clear();
             }
             topDisplay.setText(shuffledCardList.get(currentIndex).getQuestion());
+            isQuestion = true;
+            resetCount();
         }
     }
 }

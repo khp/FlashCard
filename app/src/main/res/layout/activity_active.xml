@@ -10,7 +10,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/topTextView"
-        android:layout_weight="0.64" />
+        android:layout_weight="0.42" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/activeCountTextView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,12 +37,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_active_2"
-            android:id="@+id/activeIncorrectButton" />
+            android:id="@+id/activeCorrectButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_active_3"
-            android:id="@+id/activeCorrectButton" />
+            android:id="@+id/activeIncorrectButton" />
     </LinearLayout>
 </LinearLayout>

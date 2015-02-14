@@ -51,6 +51,14 @@
                 android:value="com.khp.flashcard.app.ReviewLoad" />
         </activity>
         <activity
+            android:name=".ActiveMode"
+            android:label="@string/app_name"
+            android:parentActivityName="com.khp.flashcard.app.ActiveLoad">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.khp.flashcard.app.ActiveMode" />
+        </activity>
+        <activity
             android:name=".ReviewLoad"
             android:label="@string/app_name"
             android:parentActivityName="com.khp.flashcard.app.Main">

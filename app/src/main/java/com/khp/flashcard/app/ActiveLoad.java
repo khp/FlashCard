@@ -96,7 +96,7 @@ public class ActiveLoad extends Activity {
                     ObjectInputStream ois = new ObjectInputStream(fis);
                     cardList = (ArrayList<Card>) ois.readObject();
                     ois.close();
-                    Intent i = new Intent(getApplicationContext(), ReviewMode.class);
+                    Intent i = new Intent(getApplicationContext(), ActiveMode.class);
                     i.putExtra("Card List", cardList);
                     startActivity(i);
                 } catch (FileNotFoundException e) {
