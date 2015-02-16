@@ -20,7 +20,7 @@ import java.io.ObjectInputStream;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
-public class ReviewLoad extends Activity {
+public class ReviewLoad extends FileManager {
 
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
