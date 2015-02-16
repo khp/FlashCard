@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
 /**
  * Created by KHP on 04/07/2014.
  */
@@ -23,18 +21,17 @@ public class AddCard extends Activity {
     static final int SAVE_REQUEST = 1;
     protected int cardPosition = 0;
     private boolean newCard;
-    private int test;
     private Card currentCard;
     private EditText question;
     private EditText answer;
-    private ArrayList<Card> cardList;
+    private CardList cardList;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == RESULT_OK) {
 
-            cardList = (ArrayList<Card>) data.getExtras().get("result");
+            cardList = (CardList) data.getExtras().get("result");
             Log.i(TAG, "Answer: " + cardList.get(0).getQuestion());
             cardPosition = 0;
             currentCard = cardList.get(cardPosition);
@@ -59,7 +56,7 @@ public class AddCard extends Activity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_package:
-                cardList = new ArrayList<Card>();
+                cardList = new CardList();
                 cardPosition = 0;
                 currentCard = null;
                 answer.setText("");
@@ -107,7 +104,7 @@ public class AddCard extends Activity {
         // Set currentCard as cardList[0] if loaded, otherwise assume new
 
         if (cardList == null) {
-            cardList = new ArrayList<Card>();
+            cardList = new CardList();
             newCard = true;
         }
         else {

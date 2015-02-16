@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ReviewMode extends Activity {
 
     private TextView topDisplay;
-    private ArrayList<Card> cardList;
+    private CardList cardList;
     private int currentIndex;
     private boolean isQuestion;
     private Button flipButton;
@@ -25,7 +25,7 @@ public class ReviewMode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        cardList = (ArrayList) getIntent().getExtras().get("Card List");
+        cardList = (CardList) getIntent().getExtras().get("Card List");
 
         flipButton = (Button) findViewById(R.id.reviewFlipButton);
         prevButton = (Button) findViewById(R.id.reviewPrevButton);

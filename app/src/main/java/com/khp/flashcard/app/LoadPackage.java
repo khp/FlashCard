@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class LoadPackage extends Activity {
     private final static String TAG = "LoadPackage";
-    private ArrayList<Card> cardList;
+    private CardList cardList;
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
     private ListView listView;
@@ -38,7 +38,7 @@ public class LoadPackage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        cardList = (ArrayList) getIntent().getExtras().get("Card listView");
+        cardList = (CardList) getIntent().getExtras().get("Card listView");
         savedFilesArray = fileList();
         savedFilesList = new ArrayList<String>();
         for (int i = 0; i < savedFilesArray.length; i++) {
@@ -105,7 +105,7 @@ public class LoadPackage extends Activity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    cardList = (ArrayList<Card>) ois.readObject();
+                    cardList = (CardList) ois.readObject();
                     ois.close();
                     Log.i(TAG, "Question: " + cardList.get(0).getQuestion());
                     Intent returnIntent = new Intent();

@@ -26,7 +26,7 @@ public class ReviewLoad extends Activity {
     private ArrayList<String> savedFilesList;
     private ListView listView;
     private MyAdapter adapter;
-    private ArrayList<Card> cardList;
+    private CardList cardList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +91,7 @@ public class ReviewLoad extends Activity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    cardList = (ArrayList<Card>) ois.readObject();
+                    cardList = (CardList) ois.readObject();
                     ois.close();
                     Intent i = new Intent(getApplicationContext(), ReviewMode.class);
                     i.putExtra("Card List", cardList);

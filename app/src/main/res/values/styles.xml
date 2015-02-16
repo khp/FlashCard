@@ -1,11 +1,7 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+    <!-- inherit from the material theme -->
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <!-- Main theme colors -->
 
     </style>
-    <style name="AppTheme.NoBar" parent="AppTheme">
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
 </resources>

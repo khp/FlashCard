@@ -16,7 +16,7 @@ public class ActiveMode extends Activity {
 
     private TextView topDisplay;
     private TextView count;
-    private ArrayList<Card> cardList;
+    private CardList cardList;
     private ArrayList<Card> shuffledCardList;
     private ArrayList<Card> wrongCardList;
     private int totalCycle;
@@ -31,7 +31,7 @@ public class ActiveMode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active);
-        cardList = (ArrayList) getIntent().getExtras().get("Card List");
+        cardList = (CardList) getIntent().getExtras().get("Card List");
 
         shuffledCardList = new ArrayList<>();
         wrongCardList = new ArrayList<>();
