@@ -16,7 +16,7 @@ public class ActiveMode extends Activity {
 
     private TextView topDisplay;
     private TextView count;
-    private CardList cardList;
+    private Deck deck;
     private ArrayList<Card> shuffledCardList;
     private ArrayList<Card> wrongCardList;
     private int totalCycle;
@@ -31,7 +31,7 @@ public class ActiveMode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active);
-        cardList = (CardList) getIntent().getExtras().get("Card List");
+        deck = (Deck) getIntent().getExtras().get("Card List");
 
         shuffledCardList = new ArrayList<>();
         wrongCardList = new ArrayList<>();
@@ -60,12 +60,12 @@ public class ActiveMode extends Activity {
 
     public void resetShuffledDeck() {
         shuffledCardList.clear();
-        shuffledCardList.addAll(cardList);
+        shuffledCardList.addAll(deck.getDeck());
         Collections.shuffle(shuffledCardList);
     }
 
     public void resetCount() {
-        this.count.setText(shuffledCardList.size() + wrongCardList.size() + "/" + cardList.size());
+        this.count.setText(shuffledCardList.size() + wrongCardList.size() + "/" + deck.getDeck().size());
     }
 
     public class FlipCardListener implements View.OnClickListener {

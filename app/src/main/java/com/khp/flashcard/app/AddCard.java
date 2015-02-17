@@ -24,17 +24,17 @@ public class AddCard extends Activity {
     private Card currentCard;
     private EditText question;
     private EditText answer;
-    private CardList cardList;
+    private Deck deck;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == RESULT_OK) {
 
-            cardList = (CardList) data.getExtras().get("result");
-            Log.i(TAG, "Answer: " + cardList.get(0).getQuestion());
+            deck = (Deck) data.getExtras().get("result");
+            Log.i(TAG, "Answer: " + deck.getDeck().get(0).getQuestion());
             cardPosition = 0;
-            currentCard = cardList.get(cardPosition);
+            currentCard = deck.getDeck().get(cardPosition);
             question.setText(currentCard.getQuestion());
             answer.setText(currentCard.getAnswer());
             }
@@ -56,7 +56,7 @@ public class AddCard extends Activity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_package:
-                cardList = new CardList();
+                deck = new Deck("");
                 cardPosition = 0;
                 currentCard = null;
                 answer.setText("");
@@ -64,16 +64,16 @@ public class AddCard extends Activity {
                 return true;
             case R.id.action_open_package:
                 Intent il = new Intent(getApplicationContext(), LoadPackage.class);
-                il.putExtra("Card List", cardList);
+                il.putExtra("Card List", (android.os.Parcelable) deck);
                 startActivityForResult(il, OPEN_REQUEST);
                 return true;
             case R.id.action_save_package:
                 Intent is = new Intent(getApplicationContext(), SavePackage.class);
-                is.putExtra("Card List", cardList);
+                is.putExtra("Card List", (android.os.Parcelable) deck);
                 startActivityForResult(is, SAVE_REQUEST);
                 return true;
             case android.R.id.home:
-                Intent ih = new Intent(getApplicationContext(), Main.class);
+                Intent ih = new Intent(getApplicationContext(), MainList.class);
                 startActivity(ih);
                 return true;
             default:
@@ -102,14 +102,16 @@ public class AddCard extends Activity {
         prevButton.setOnClickListener(new PrevCardListener());
 
         // Set currentCard as cardList[0] if loaded, otherwise assume new
-
-        if (cardList == null) {
-            cardList = new CardList();
+        if (this.getIntent().hasExtra("Deck")) {
+            deck = (Deck) this.getIntent().getExtras().get("Deck");
+        }
+        if (deck == null) {
+            deck = new Deck("");
             newCard = true;
         }
         else {
             newCard = false;
-            currentCard = cardList.get(cardPosition);
+            currentCard = deck.getDeck().get(cardPosition);
             question.setText(currentCard.getQuestion());
             answer.setText(currentCard.getAnswer());
         }
@@ -152,7 +154,7 @@ public class AddCard extends Activity {
                 // If current index in cardList exists
                 if (newCard) {
                     currentCard = new Card(question.getText().toString(), answer.getText().toString());
-                    cardList.add(cardPosition, currentCard);
+                    deck.getDeck().add(cardPosition, currentCard);
                     newCard = false;
                     Log.i(TAG, "New card added");
                 }
@@ -160,7 +162,7 @@ public class AddCard extends Activity {
                 else {
                     Card card = new Card(question.getText().toString(), answer.getText().toString());
                     currentCard = card;
-                    cardList.set(cardPosition, card);
+                    deck.getDeck().set(cardPosition, card);
                     Log.i(TAG, "Additional card added");
                 }
             }
@@ -173,14 +175,14 @@ public class AddCard extends Activity {
     public class NextCardListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if (!cardList.isEmpty()) {
-                if (cardPosition + 1 == cardList.size()) {
+            if (!deck.getDeck().isEmpty()) {
+                if (cardPosition + 1 == deck.getDeck().size()) {
                     setCardPosition(0);
                 } else {
                     setCardPosition(cardPosition + 1);
                 }
-                question.setText(cardList.get(cardPosition).getQuestion());
-                answer.setText(cardList.get(cardPosition).getAnswer());
+                question.setText(deck.getDeck().get(cardPosition).getQuestion());
+                answer.setText(deck.getDeck().get(cardPosition).getAnswer());
             }
         }
     }
@@ -188,14 +190,14 @@ public class AddCard extends Activity {
     public class PrevCardListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if (!cardList.isEmpty()) {
+            if (!deck.getDeck().isEmpty()) {
                 if (cardPosition == 0) {
-                    setCardPosition(cardList.size() - 1);
+                    setCardPosition(deck.getDeck().size() - 1);
                 } else {
                     setCardPosition(cardPosition - 1);
                 }
-                question.setText(cardList.get(cardPosition).getQuestion());
-                answer.setText(cardList.get(cardPosition).getAnswer());
+                question.setText(deck.getDeck().get(cardPosition).getQuestion());
+                answer.setText(deck.getDeck().get(cardPosition).getAnswer());
             }
         }
     }

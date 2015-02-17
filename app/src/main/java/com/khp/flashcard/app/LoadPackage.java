@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class LoadPackage extends Activity {
     private final static String TAG = "LoadPackage";
-    private CardList cardList;
+    private Deck deck;
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
     private ListView listView;
@@ -38,7 +38,7 @@ public class LoadPackage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        cardList = (CardList) getIntent().getExtras().get("Card listView");
+        deck = (Deck) getIntent().getExtras().get("Card listView");
         savedFilesArray = fileList();
         savedFilesList = new ArrayList<String>();
         for (int i = 0; i < savedFilesArray.length; i++) {
@@ -105,11 +105,11 @@ public class LoadPackage extends Activity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    cardList = (CardList) ois.readObject();
+                    deck = (Deck) ois.readObject();
                     ois.close();
-                    Log.i(TAG, "Question: " + cardList.get(0).getQuestion());
+                    Log.i(TAG, "Question: " + deck.getDeck().get(0).getQuestion());
                     Intent returnIntent = new Intent();
-                    returnIntent.putExtra("result", cardList);
+                    returnIntent.putExtra("result", (android.os.Parcelable) deck);
                     setResult(RESULT_OK, returnIntent);
                     finish();
                 } catch (FileNotFoundException e) {

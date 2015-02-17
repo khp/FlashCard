@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class SavePackage extends Activity {
     private final static String TAG = "SavePackage";
-    private CardList cardList;
+    private Deck deck;
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
 
@@ -33,7 +33,7 @@ public class SavePackage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
-        cardList = (CardList) getIntent().getExtras().get("Card List");
+        deck = (Deck) getIntent().getExtras().get("Card List");
         final ListView List = (ListView) findViewById(R.id.saveListView);
         savedFilesArray = fileList();
         savedFilesList = new ArrayList();
@@ -52,7 +52,7 @@ public class SavePackage extends Activity {
                     try {
                         FileOutputStream fos = getApplicationContext().openFileOutput(saveName.getText().toString(), 0);
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
-                        oos.writeObject(cardList);
+                        oos.writeObject(deck);
                         oos.close();
                     } catch (IOException e) {
                         e.printStackTrace();

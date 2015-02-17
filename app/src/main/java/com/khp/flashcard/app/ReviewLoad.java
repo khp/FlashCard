@@ -26,7 +26,7 @@ public class ReviewLoad extends Activity {
     private ArrayList<String> savedFilesList;
     private ListView listView;
     private MyAdapter adapter;
-    private CardList cardList;
+    private Deck deck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +91,10 @@ public class ReviewLoad extends Activity {
                 try {
                     fis = openFileInput(fileName);
                     ObjectInputStream ois = new ObjectInputStream(fis);
-                    cardList = (CardList) ois.readObject();
+                    deck = (Deck) ois.readObject();
                     ois.close();
                     Intent i = new Intent(getApplicationContext(), ReviewMode.class);
-                    i.putExtra("Card List", cardList);
+                    i.putExtra("Card List", (android.os.Parcelable) deck);
                     startActivity(i);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

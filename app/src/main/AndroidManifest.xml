@@ -10,12 +10,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.khp.flashcard.app.Main"
+            android:name="com.khp.flashcard.app.MainList"
             android:label="@string/app_name" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.Main" />
-
+                android:value="com.khp.flashcard.app.MainList" />
         </activity>
         <activity
             android:name="com.khp.flashcard.app.Splash"
@@ -29,18 +28,18 @@
         <activity
             android:name=".CardManager"
             android:label="@string/app_name"
-            android:parentActivityName="com.khp.flashcard.app.Main">
+            android:parentActivityName="com.khp.flashcard.app.MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.Main" />
+                android:value="com.khp.flashcard.app.MainList" />
         </activity>
         <activity
             android:name=".AddCard"
             android:label="@string/add_card_name"
-            android:parentActivityName="com.khp.flashcard.app.Main">
+            android:parentActivityName="com.khp.flashcard.app.MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.Main" />
+                android:value="com.khp.flashcard.app.MainList" />
         </activity>
         <activity
             android:name=".ReviewMode"
@@ -61,18 +60,18 @@
         <activity
             android:name=".ReviewLoad"
             android:label="@string/app_name"
-            android:parentActivityName="com.khp.flashcard.app.Main">
+            android:parentActivityName="com.khp.flashcard.app.MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.Main" />
+                android:value="com.khp.flashcard.app.MainList" />
         </activity>
         <activity
             android:name=".ActiveLoad"
             android:label="@string/app_name"
-            android:parentActivityName="com.khp.flashcard.app.Main">
+            android:parentActivityName="com.khp.flashcard.app.MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.Main" />
+                android:value="com.khp.flashcard.app.MainList" />
         </activity>
         <activity
             android:name=".LoadPackage"
