@@ -4,16 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 /**
  * Created by kanghee on 2/16/2015.
@@ -24,6 +28,7 @@ public class MainList extends Activity {
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
     private ListViewAdapter adapter;
+    private NewDeckDialog dialog;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,23 +70,29 @@ public class MainList extends Activity {
             final TextView modifiedText = (TextView) rowView.findViewById(R.id.date_modified);
             if (position == FilesList.size() - 1) {
                 titleText.setText(FilesList.get(position));
-                rowView.setOnClickListener(new viewClickListener(new Deck("thing")));
+                rowView.setOnClickListener(new NewClickListener());
                 numberText.setText("");
                 modifiedText.setText("");
                 return rowView;
             }
-            titleText.setText(FilesList.get(position));
             Deck deck = Deck.getDeckFromSystem(FilesList.get(position), context);
-            numberText.setText(Integer.toString(deck.getDeck().size()) + " cards");
+            titleText.setText(deck.getTitle());
+
+            if (deck.getDeck().size() == 1) {
+                numberText.setText(Integer.toString(deck.getDeck().size()) + " card");
+            } else {
+                numberText.setText(Integer.toString(deck.getDeck().size()) + " cards");
+            }
+
             modifiedText.setText(deck.getLastModified().toString());
-            rowView.setOnClickListener(new viewClickListener(deck));
+            rowView.setOnClickListener(new DeckClickListener(deck));
             return rowView;
         }
-        public class viewClickListener implements View.OnClickListener {
+        public class DeckClickListener implements View.OnClickListener {
 
             private Deck deck;
 
-            public viewClickListener (Deck deck) {
+            public DeckClickListener(Deck deck) {
             this.deck = deck;
             }
 
@@ -91,5 +102,24 @@ public class MainList extends Activity {
                 startActivity(i);
             }
         }
+        public class NewClickListener implements View.OnClickListener {
+
+            public void onClick(View view) {
+                dialog = new NewDeckDialog();
+                dialog.show(getFragmentManager(), "new deck dialog");
+            }
+        }
     }
+    public boolean onOptionsItemSelected (MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_new_package:
+                dialog = new NewDeckDialog();
+                dialog.show(getFragmentManager(), "new deck dialog");
+                return true;
+
+            default:
+                return true;
+        }
+    }
+
 }

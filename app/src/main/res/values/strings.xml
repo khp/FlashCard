@@ -8,6 +8,9 @@
     <string name="action_new">New Package</string>
     <string name="action_open">Open Package</string>
     <string name="action_save">Save Package</string>
+    <string name="dialog_title">Name your deck</string>
+    <string name="dialog_yes">Create</string>
+    <string name="dialog_no">Cancel</string>
 
     <string name="main_title">FlashCard</string>
     <string name="button_main_manage">Manage Cards</string>

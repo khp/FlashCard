@@ -105,7 +105,7 @@ public class AddCard extends Activity {
         if (this.getIntent().hasExtra("Deck")) {
             deck = (Deck) this.getIntent().getExtras().get("Deck");
         }
-        if (deck == null) {
+        else if (deck == null) {
             deck = new Deck("");
             newCard = true;
         }
