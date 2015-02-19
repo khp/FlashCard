@@ -1,10 +1,9 @@
 package com.khp.flashcard.app;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,8 +25,8 @@ public class MainList extends Activity {
     private String[] savedFilesArray;
     private ArrayList<String> savedFilesList;
     private ListViewAdapter adapter;
-    private NewDeckDialog dialog;
-    private PopupWindow openDeckPopup;
+    private NewDeckDialog newDialog;
+    private OpenDeckDialog openDialog;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,47 +40,42 @@ public class MainList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
         init();
-        initPopUp();
     }
     private void init () {
 
+        refreshList();
+
+        listView = (ListView) findViewById(R.id.mainListView);
+        adapter = new ListViewAdapter(this, savedFilesList);
+        listView.setAdapter(adapter);
+    }
+
+    public ArrayList<String> refreshList () {
         // Load files from system to an array
         savedFilesArray = fileList();
         savedFilesList = new ArrayList();
         for (int i = 0; i < savedFilesArray.length; i++) {
             savedFilesList.add(savedFilesArray[i]);
         }
-        listView = (ListView) findViewById(R.id.mainListView);
-
         // Add entry for ListViewAdapter to return View for New Deck rowView
         savedFilesList.add("Create New Deck");
-        adapter = new ListViewAdapter(this, savedFilesList);
-        listView.setAdapter(adapter);
+        return savedFilesList;
     }
 
-    private void initPopUp() {
-        // Initialize PopupWindow
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View popUpLayout = inflater.inflate(R.layout.popupwindow_open_deck,
-                (ViewGroup) findViewById(R.id.popup_listview));
-        openDeckPopup = new PopupWindow(this);
-        openDeckPopup.setFocusable(true);
-        openDeckPopup.setContentView(popUpLayout);
-        openDeckPopup.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        openDeckPopup.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-    }
     // Inner class extending ArrayAdapter for ListView
-    private class ListViewAdapter extends ArrayAdapter<String> {
+    public class ListViewAdapter extends ArrayAdapter<String> {
 
         final private Context context;
-        private ArrayList<String> FilesList = new ArrayList();
+        private ArrayList<String> filesList = new ArrayList();
 
         public ListViewAdapter(Context context, ArrayList<String> objects) {
             super(context, R.layout.listview_review_load, objects);
             this.context = context;
-            FilesList.addAll(objects);
+            filesList.addAll(objects);
         }
-
+        public ArrayList<String> getFilesList() {
+            return filesList;
+        }
         public View getView(int position, View convertView, ViewGroup parent) {
 
             // Always get LayoutInflater instead of instantiating it
@@ -92,14 +85,14 @@ public class MainList extends Activity {
             final TextView numberText = (TextView) rowView.findViewById(R.id.number_of_cards);
             final TextView modifiedText = (TextView) rowView.findViewById(R.id.date_modified);
             // For last rowView create a "New Deck" selection instead
-            if (position == FilesList.size() - 1) {
-                titleText.setText(FilesList.get(position));
+            if (position == filesList.size() - 1) {
+                titleText.setText(filesList.get(position));
                 rowView.setOnClickListener(new NewClickListener());
                 numberText.setText("");
                 modifiedText.setText("");
                 return rowView;
             }
-            Deck deck = Deck.getDeckFromSystem(FilesList.get(position), context);
+            Deck deck = Deck.getDeckFromSystem(filesList.get(position), context);
             titleText.setText(deck.getTitle());
 
             if (deck.getDeck().size() == 1) {
@@ -123,12 +116,9 @@ public class MainList extends Activity {
             }
 
             public void onClick(View view) {
-
-                openDeckPopup.showAtLocation(findViewById(R.id.mainListView), Gravity.CENTER, 0, 0);
-
-//                Intent i = new Intent(getApplicationContext(), AddCard.class);
-//                i.putExtra("Deck", (android.os.Parcelable) deck);
-//                startActivity(i);
+                openDialog = new OpenDeckDialog();
+                openDialog.setDeck(deck);
+                openDialog.show(getFragmentManager(), "open deck newDialog");
             }
         }
 
@@ -136,8 +126,8 @@ public class MainList extends Activity {
         public class NewClickListener implements View.OnClickListener {
 
             public void onClick(View view) {
-                dialog = new NewDeckDialog();
-                dialog.show(getFragmentManager(), "new deck dialog");
+                newDialog = new NewDeckDialog();
+                newDialog.show(getFragmentManager(), "new deck newDialog");
             }
         }
     }
@@ -146,8 +136,8 @@ public class MainList extends Activity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_package:
-                dialog = new NewDeckDialog();
-                dialog.show(getFragmentManager(), "new deck dialog");
+                newDialog = new NewDeckDialog();
+                newDialog.show(getFragmentManager(), "new deck newDialog");
                 return true;
 
             default:

@@ -31,7 +31,7 @@ public class ActiveMode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active);
-        deck = (Deck) getIntent().getExtras().get("Card List");
+        deck = (Deck) getIntent().getExtras().get("Deck");
 
         shuffledCardList = new ArrayList<>();
         wrongCardList = new ArrayList<>();

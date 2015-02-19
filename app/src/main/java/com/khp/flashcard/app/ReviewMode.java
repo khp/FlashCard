@@ -23,7 +23,7 @@ public class ReviewMode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        deck = (Deck) getIntent().getExtras().get("Card List");
+        deck = (Deck) getIntent().getExtras().get("Deck");
 
         flipButton = (Button) findViewById(R.id.reviewFlipButton);
         prevButton = (Button) findViewById(R.id.reviewPrevButton);

@@ -1,4 +1,4 @@
-package com.khp.flashcard.app;
+package oldclasses;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.khp.flashcard.app.Deck;
+import com.khp.flashcard.app.R;
+import com.khp.flashcard.app.ReviewMode;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

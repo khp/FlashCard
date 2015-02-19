@@ -27,7 +27,7 @@ public class NewDeckDialog extends DialogFragment {
         builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(getActivity(), AddCard.class);
+                Intent i = new Intent(getActivity(), ManageList.class);
                 i.putExtra("Deck", (android.os.Parcelable) new Deck(field.getText().toString()));
                 startActivity(i);
             }
