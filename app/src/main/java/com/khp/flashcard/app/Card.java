@@ -9,10 +9,20 @@ public class Card implements Serializable {
 
     private String question;
     private String answer;
+    private boolean include;
+
+    public boolean isInclude() {
+        return include;
+    }
+
+    public void setInclude(boolean include) {
+        this.include = include;
+    }
 
     Card(String q, String a) {
         question = q;
         answer = a;
+        include = true;
     }
 
     public String getQuestion() {

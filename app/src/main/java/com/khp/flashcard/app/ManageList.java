@@ -1,16 +1,24 @@
 package com.khp.flashcard.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +35,7 @@ public class ManageList extends Activity {
 
     private ListView listView;
     private ListViewAdapter adapter;
-    private OpenDeckDialog openDialog;
+    private ChangeTextDialog textDialog;
     private Deck deck;
 
     @Override
@@ -46,8 +54,6 @@ public class ManageList extends Activity {
         init();
     }
     private void init () {
-
-
         listView = (ListView) findViewById(R.id.manageListView);
         adapter = new ListViewAdapter(this);
         listView.setAdapter(adapter);
@@ -62,33 +68,69 @@ public class ManageList extends Activity {
             this.context = context;
         }
 
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             // Always get LayoutInflater instead of instantiating it
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.listview_display_card, parent, false);
             final TextView qText = (TextView) rowView.findViewById(R.id.qTextView);
             final TextView aText = (TextView) rowView.findViewById(R.id.aTextView);
+            final CheckBox includeBox = (CheckBox) rowView.findViewById(R.id.checkBox);
+            includeBox.setChecked(deck.getDeck().get(position).isInclude());
+            includeBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    deck.getDeck().get(position).setInclude(isChecked);
+                }
+            });
             qText.setText(deck.getDeck().get(position).getQuestion());
             aText.setText(deck.getDeck().get(position).getAnswer());
-
-            rowView.setOnClickListener(new CardClickListener(position));
+            ViewClickListener longClickListener = new ViewClickListener(position);
+            qText.setOnClickListener(new TextClickListener(position, true));
+            qText.setOnLongClickListener(longClickListener);
+            aText.setOnClickListener(new TextClickListener(position, false));
+            aText.setOnLongClickListener(longClickListener);
+            rowView.setOnLongClickListener(new ViewClickListener(position));
             return rowView;
         }
-
-        // OnClickListener for starting new activity with given deck
-        public class CardClickListener implements View.OnClickListener {
+        public class ViewClickListener implements View.OnLongClickListener {
 
             private int position;
 
-            public CardClickListener(int position) {
+            public ViewClickListener (int position) {
                 this.position = position;
             }
 
+            @Override
+            public boolean onLongClick(View v) {
+                Bundle bund1 = new Bundle();
+                bund1.putInt("position", position);
+                bund1.putParcelable("deck", deck);
+                DeleteDialog delete = new DeleteDialog();
+                delete.setArguments(bund1);
+                delete.show(getFragmentManager(), "delete card dialog");
+                return false;
+            }
+        }
+        // OnClickListener for starting new activity with given deck
+        public class TextClickListener implements View.OnClickListener {
+
+            private int position;
+            private boolean question;
+
+            public TextClickListener(int position, boolean question) {
+                this.position = position;
+                this.question = question;
+            }
+
             public void onClick(View view) {
-                openDialog = new OpenDeckDialog();
-                openDialog.setDeck(deck);
-                openDialog.show(getFragmentManager(), "open deck newDialog");
+                Bundle bund1 = new Bundle();
+                bund1.putBoolean("question", question);
+                bund1.putInt("position", position);
+                bund1.putParcelable("deck", deck);
+                textDialog = new ChangeTextDialog();
+                textDialog.setArguments(bund1);
+                textDialog.show(getFragmentManager(), "new card dialog");
             }
         }
     }
@@ -98,6 +140,7 @@ public class ManageList extends Activity {
         switch (item.getItemId()) {
             case R.id.action_new_card:
                 deck.getDeck().add(new Card("new", "card"));
+                adapter.notifyDataSetChanged();
             case R.id.action_save_deck:
                 try {
                     deleteFile(deck.getTitle());
@@ -118,4 +161,15 @@ public class ManageList extends Activity {
         }
     }
 
+    public void onCreateContextMenu (ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        ListView list = (ListView) v;
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+        int position = info.position;
+        DeleteDialog delete = new DeleteDialog();
+        Bundle bund1 = new Bundle();
+        bund1.putInt("position", position);
+        bund1.putParcelable("deck", deck);
+        delete.setArguments(bund1);
+        delete.show(getFragmentManager(), "delete card dialog");
+    }
 }

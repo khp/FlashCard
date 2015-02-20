@@ -2,7 +2,6 @@ package com.khp.flashcard.app;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -48,6 +47,7 @@ public class MainList extends Activity {
         listView = (ListView) findViewById(R.id.mainListView);
         adapter = new ListViewAdapter(this, savedFilesList);
         listView.setAdapter(adapter);
+
     }
 
     public ArrayList<String> refreshList () {
@@ -139,7 +139,6 @@ public class MainList extends Activity {
                 newDialog = new NewDeckDialog();
                 newDialog.show(getFragmentManager(), "new deck newDialog");
                 return true;
-
             default:
                 return true;
         }

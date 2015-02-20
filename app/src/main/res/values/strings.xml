@@ -11,6 +11,8 @@
     <string name="dialog_title">Name your deck</string>
     <string name="dialog_yes">Create</string>
     <string name="dialog_no">Cancel</string>
+    <string name="dialog_new_card_title">SetTextHere</string>
+    <string name="dialog_delete">Delete</string>
 
     <string name="main_title">FlashCard</string>
     <string name="button_main_manage">Manage Cards</string>
