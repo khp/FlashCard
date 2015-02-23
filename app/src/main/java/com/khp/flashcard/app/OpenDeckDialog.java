@@ -73,7 +73,7 @@ public class OpenDeckDialog extends DialogFragment {
             View view = inflater.inflate(R.layout.listview_button, parent, false);
             TextView textView = (TextView) view.findViewById(R.id.buttonTextView);
             textView.setText(buttonList.get(position));
-            textView.setOnClickListener(new ViewClickListener(position));
+            view.setOnClickListener(new ViewClickListener(position));
 
             return view;
         }
@@ -105,6 +105,7 @@ public class OpenDeckDialog extends DialogFragment {
                             return;
                 }
                 i.putExtra("Deck", (Parcelable) deck);
+                dismiss();
                 startActivity(i);
             }
         }

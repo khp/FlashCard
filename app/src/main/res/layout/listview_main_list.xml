@@ -11,7 +11,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="___"
         android:textSize="10pt"
-        android:textStyle="bold"
         android:id="@+id/item1"
         android:gravity="left"
         android:layout_marginTop="5pt"
@@ -31,7 +30,7 @@
             android:id="@+id/number_of_cards"
             android:layout_gravity="left"
             android:layout_marginBottom="5pt"
-            android:layout_marginLeft="5pt"
+            android:layout_marginLeft="6pt"
             android:layout_weight="1"
             android:textStyle="bold"/>
 
