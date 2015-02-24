@@ -59,8 +59,11 @@ public abstract class AbstractReview extends Activity{
     }
 
     public void shuffleDeckInUse() {
+        Collections.shuffle(deckInUse);
+    }
+
+    public void resetDeck() {
         deckInUse.clear();
         deckInUse.addAll(deck.getDeck());
-        Collections.shuffle(deckInUse);
     }
 }

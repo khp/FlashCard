@@ -70,6 +70,7 @@ public class ActiveMode extends AbstractReview {
                 deckInUse.remove(0);
             } else if (currentCycle < totalCycle && wrongCardList.size() == 0) {
                 currentCycle++;
+                resetDeck();
                 shuffleDeckInUse();
             } else if (currentCycle == totalCycle && wrongCardList.size() == 0) {
 
@@ -82,6 +83,7 @@ public class ActiveMode extends AbstractReview {
             }
             setQAndA(currentIndex);
             qDisplay.setText(questionString);
+            hideAnswer();
             resetCount();
         }
     }
@@ -97,6 +99,7 @@ public class ActiveMode extends AbstractReview {
             }
             setQAndA(currentIndex);
             qDisplay.setText(questionString);
+            hideAnswer();
             resetCount();
         }
     }
