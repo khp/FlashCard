@@ -1,48 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layout_marginLeft="8pt"
+    android:layout_marginRight="8pt"
+    android:gravity="fill_vertical"
+    android:orientation="vertical">
 
     <TextView
+        android:theme="@style/MyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/questionTextView"
+        android:layout_marginTop="12pt"
+        android:layout_marginBottom="8pt"
+        android:gravity="top" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/review_answer_title"
+        android:layout_marginTop="8pt"
+        android:id="@+id/answerTitleTextView" />
+
+    <TextView
+        android:theme="@style/MyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/topTextView"
-        android:layout_weight="0.42" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/activeCountTextView"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.03" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_active_1"
-        android:id="@+id/activeFlipButton"
-        android:layout_gravity="center_horizontal" />
+        android:text="Answer"
+        android:id="@+id/answerTextView"
+        android:gravity="top"
+        android:layout_marginTop="5pt" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.28">
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_active_2"
-            android:id="@+id/activeCorrectButton" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/activeCountTextView"
+            android:layout_gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_active_3"
-            android:id="@+id/activeIncorrectButton" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8pt">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@android:color/black"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="0">
+
+                <ImageButton
+                    android:theme="@style/MyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_incorrect"
+                    android:id="@+id/activeIncorrect"
+                    android:background="@null"
+                    android:layout_column="3"
+                    android:contentDescription="Incorrect"
+                    android:layout_weight=".5"
+                    android:layout_gravity="center_vertical" />
+
+                <Button
+                    android:theme="@style/MyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_active_1"
+                    android:id="@+id/activeFlipButton"
+                    android:background="@null"
+                    android:layout_column="11" />
+
+                <ImageButton
+                    android:theme="@style/MyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_correct"
+                    android:id="@+id/activeCorrect"
+                    android:background="@null"
+                    android:layout_column="12"
+                    android:contentDescription="Correct"
+                    android:layout_weight=".5"
+                    android:layout_gravity="center_vertical" />
+            </TableRow>
+
+        </TableLayout>
     </LinearLayout>
+
 </LinearLayout>

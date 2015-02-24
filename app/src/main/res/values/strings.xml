@@ -13,6 +13,9 @@
     <string name="dialog_no">Cancel</string>
     <string name="dialog_new_card_title">SetTextHere</string>
     <string name="dialog_delete">Delete</string>
+    <string name="review_question">%1$s</string>
+    <string name="review_answer">%1$s</string>
+    <string name="review_answer_title">Answer: </string>
 
     <string name="main_title">FlashCard</string>
     <string name="button_main_manage">Manage Cards</string>
@@ -37,7 +40,7 @@
     <string name="button_save_1">Save</string>
     <string name="button_delete_1">Delete</string>
 
-    <string name="button_review_1">Flip</string>
+    <string name="button_review_1">Show Answer</string>
     <string name="button_review_2">Prev</string>
     <string name="button_review_3">Next</string>
 

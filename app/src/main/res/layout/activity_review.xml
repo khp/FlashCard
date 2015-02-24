@@ -16,13 +16,22 @@
         android:text="Question"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/questionTextView"
-        android:layout_marginTop="8pt"
+        android:layout_marginTop="12pt"
         android:layout_marginBottom="8pt"
         android:gravity="top" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@android:color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/review_answer_title"
+        android:layout_marginTop="8pt"
+        android:id="@+id/answerTitleTextView" />
+
     <TextView
         android:theme="@style/MyTextView"
         android:layout_width="match_parent"
@@ -31,30 +40,38 @@
         android:text="Answer"
         android:id="@+id/answerTextView"
         android:gravity="top"
-        android:layout_marginTop="8pt"/>
+        android:layout_marginTop="5pt"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="bottom|center_horizontal"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_marginBottom="8pt">
 
         <Button
+            android:theme="@style/MyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_review_2"
-            android:id="@+id/reviewPrevButton" />
+
+            android:id="@+id/reviewPrevButton"
+            android:background="@null"/>
 
         <Button
+            android:theme="@style/MyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_review_1"
-            android:id="@+id/reviewFlipButton" />
+            android:id="@+id/reviewFlipButton"
+            android:background="@null"/>
 
         <Button
+            android:theme="@style/MyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_review_3"
-            android:id="@+id/reviewNextButton" />
+            android:id="@+id/reviewNextButton"
+            android:background="@null"/>
     </LinearLayout>
 </LinearLayout>
