@@ -51,7 +51,7 @@ public class ReviewMode extends AbstractReview {
         public void onClick(View view) {
             currentIndex--;
             if (currentIndex < 0) {
-                currentIndex = deck.getDeck().size() - 1;
+                currentIndex = fullDeck.size() - 1;
             }
             setQAndA(currentIndex);
             qDisplay.setText(questionString);
@@ -62,7 +62,7 @@ public class ReviewMode extends AbstractReview {
     public class NextCardListener implements View.OnClickListener {
         public void onClick(View view) {
             currentIndex++;
-            if (currentIndex == deck.getDeck().size()) {
+            if (currentIndex == fullDeck.size()) {
                 currentIndex = 0;
             }
             setQAndA(currentIndex);

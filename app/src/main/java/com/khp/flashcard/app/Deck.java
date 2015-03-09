@@ -59,6 +59,17 @@ public class Deck implements Parcelable, Serializable{
         this.deck = serDeck.getDeck();
     }
 
+    public ArrayList<Card> getIncludedCards () {
+        ArrayList<Card> includedCards = new ArrayList<>();
+        for (Card c : deck) {
+            if (c.isInclude()) {
+                includedCards.add(c);
+            }
+        }
+        return includedCards;
+    }
+
+
     public Date getLastModified() {
         return lastModified;
     }

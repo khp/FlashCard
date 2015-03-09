@@ -19,6 +19,7 @@ public abstract class AbstractReview extends Activity{
     protected TextView aTitle;
     protected Deck deck;
     protected ArrayList<Card> deckInUse;
+    protected ArrayList<Card> fullDeck;
     protected int currentIndex;
     protected boolean showAnswer;
     protected String questionString;
@@ -28,7 +29,8 @@ public abstract class AbstractReview extends Activity{
     public void init() {
         deck = (Deck) getIntent().getExtras().get("Deck");
         deckInUse = new ArrayList<>();
-        deckInUse.addAll(deck.getDeck());
+        fullDeck = deck.getIncludedCards();
+        deckInUse.addAll(fullDeck);
         res = getResources();
         currentIndex = 0;
         setQAndA(currentIndex);
@@ -64,6 +66,6 @@ public abstract class AbstractReview extends Activity{
 
     public void resetDeck() {
         deckInUse.clear();
-        deckInUse.addAll(deck.getDeck());
+        deckInUse.addAll(fullDeck);
     }
 }

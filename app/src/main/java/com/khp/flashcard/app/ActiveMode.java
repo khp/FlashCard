@@ -51,7 +51,7 @@ public class ActiveMode extends AbstractReview {
 
 
     public void resetCount() {
-        this.count.setText(deckInUse.size() + wrongCardList.size() + "/" + deck.getDeck().size());
+        this.count.setText(deckInUse.size() + wrongCardList.size() + "/" + fullDeck.size());
     }
 
     public class FlipCardListener implements View.OnClickListener {
