@@ -1,4 +1,4 @@
-package com.khp.flashcard.app;
+package com.khp.flashcard.app.dialogues;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import com.khp.flashcard.app.ManageList;
+import com.khp.flashcard.app.R;
+import com.khp.flashcard.app.model.Deck;
 
 /**
  * Created by kanghee on 2/17/2015.

@@ -1,11 +1,7 @@
 package com.khp.flashcard.app;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -22,10 +18,14 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.khp.flashcard.app.dialogues.ChangeTextDialog;
+import com.khp.flashcard.app.dialogues.DeleteDialog;
+import com.khp.flashcard.app.model.Card;
+import com.khp.flashcard.app.model.Deck;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 /**
  * Created by kanghee on 2/17/2015.
@@ -131,28 +131,34 @@ public class ManageList extends Activity {
                 textDialog = new ChangeTextDialog();
                 textDialog.setArguments(bund1);
                 textDialog.show(getFragmentManager(), "new card dialog");
+                save();
             }
         }
     }
 
+    public void save() {
+        try {
+            deleteFile(deck.getTitle());
+            FileOutputStream fos = getApplicationContext().openFileOutput(deck.getTitle(), 0);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(deck);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // Controls ActionBar icons
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_card:
-                deck.getDeck().add(new Card("new", "card"));
+                deck.getDeck().add(new Card("Question", "Answer"));
+                save();
                 adapter.notifyDataSetChanged();
             case R.id.action_save_deck:
-                try {
-                    deleteFile(deck.getTitle());
-                    FileOutputStream fos = getApplicationContext().openFileOutput(deck.getTitle(), 0);
-                    ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    oos.writeObject(deck);
-                    oos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                save();
                 return true;
             case android.R.id.home:
+                save();
                 Intent ih = new Intent(getApplicationContext(), MainList.class);
                 startActivity(ih);
                 return true;

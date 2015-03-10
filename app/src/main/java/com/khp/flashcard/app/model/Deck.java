@@ -1,4 +1,4 @@
-package com.khp.flashcard.app;
+package com.khp.flashcard.app.model;
 
 import android.content.Context;
 import android.os.Parcel;

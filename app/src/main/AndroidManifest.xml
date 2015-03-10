@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".test.oldclasses.AddCard"
-            android:label="@string/add_card_name"
+            android:name=".ImportDeck"
+            android:label="@string/import_deck_name"
             android:parentActivityName="com.khp.flashcard.app.MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,50 +44,18 @@
         <activity
             android:name=".ReviewMode"
             android:label="@string/app_name"
-            android:parentActivityName=".test.oldclasses.ReviewLoad">
+            android:parentActivityName=".MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".test.oldclasses.ReviewLoad" />
+                android:value=".MainList" />
         </activity>
         <activity
             android:name=".ActiveMode"
             android:label="@string/app_name"
-            android:parentActivityName=".test.oldclasses.ActiveLoad">
+            android:parentActivityName=".MainList">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.khp.flashcard.app.ActiveMode" />
-        </activity>
-        <activity
-            android:name=".test.oldclasses.ReviewLoad"
-            android:label="@string/app_name"
-            android:parentActivityName="com.khp.flashcard.app.MainList">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.MainList" />
-        </activity>
-        <activity
-            android:name=".test.oldclasses.ActiveLoad"
-            android:label="@string/app_name"
-            android:parentActivityName="com.khp.flashcard.app.MainList">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.khp.flashcard.app.MainList" />
-        </activity>
-        <activity
-            android:name=".LoadPackage"
-            android:label="@string/app_name"
-            android:parentActivityName=".test.oldclasses.AddCard">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".test.oldclasses.AddCard" />
-        </activity>
-        <activity
-            android:name=".test.oldclasses.SavePackage"
-            android:label="@string/app_name"
-            android:parentActivityName=".test.oldclasses.AddCard">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".test.oldclasses.AddCard" />
         </activity>
     </application>
 

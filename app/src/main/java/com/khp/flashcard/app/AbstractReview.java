@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 
+import com.khp.flashcard.app.model.Card;
+import com.khp.flashcard.app.model.Deck;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

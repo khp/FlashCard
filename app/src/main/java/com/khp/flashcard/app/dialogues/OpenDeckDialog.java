@@ -1,4 +1,4 @@
-package com.khp.flashcard.app;
+package com.khp.flashcard.app.dialogues;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,9 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.khp.flashcard.app.ActiveMode;
+import com.khp.flashcard.app.MainList;
+import com.khp.flashcard.app.ManageList;
+import com.khp.flashcard.app.R;
+import com.khp.flashcard.app.ReviewMode;
+import com.khp.flashcard.app.model.Deck;
 
 import java.util.ArrayList;
 

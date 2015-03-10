@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.khp.flashcard.app.model.Card;
+
 import java.util.ArrayList;
 
 /**

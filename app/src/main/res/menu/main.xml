@@ -8,9 +8,11 @@
         android:icon="@drawable/ic_action_new"
         android:title="@string/action_new"
         android:showAsAction="always"/>
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item
+        android:id="@+id/action_import"
+        android:icon="@drawable/ic_import"
+        android:title="@string/action_import"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:showAsAction="always" />
 
 </menu>

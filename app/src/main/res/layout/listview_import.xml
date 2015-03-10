@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="filename"
+        android:textSize="10pt"
+        android:id="@+id/fileName"
+        android:gravity="left"
+        android:layout_marginTop="5pt"
+        android:layout_marginLeft="5pt"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="number_of_cards"
+            android:id="@+id/last_modified"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5pt"
+            android:layout_marginLeft="6pt"
+            android:layout_weight="1"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=""
+            android:id="@+id/date_modified"
+            android:layout_marginRight="10pt"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,16 +1,18 @@
-package com.khp.flashcard.app;
+package com.khp.flashcard.app.dialogues;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.khp.flashcard.app.R;
+import com.khp.flashcard.app.model.Deck;
 
 /**
  * Created by kanghee on 2/17/2015.

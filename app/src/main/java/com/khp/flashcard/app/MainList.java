@@ -2,6 +2,7 @@ package com.khp.flashcard.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.khp.flashcard.app.dialogues.NewDeckDialog;
+import com.khp.flashcard.app.dialogues.OpenDeckDialog;
+import com.khp.flashcard.app.model.Deck;
 
 import java.util.ArrayList;
 
@@ -139,6 +144,9 @@ public class MainList extends Activity {
                 newDialog = new NewDeckDialog();
                 newDialog.show(getFragmentManager(), "new deck newDialog");
                 return true;
+            case R.id.action_import:
+                Intent i = new Intent(this, ImportDeck.class);
+                startActivity(i);
             default:
                 return true;
         }

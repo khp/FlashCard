@@ -1,4 +1,4 @@
-package com.khp.flashcard.app;
+package com.khp.flashcard.app.model;
 
 import java.io.Serializable;
 
@@ -19,7 +19,7 @@ public class Card implements Serializable {
         this.include = include;
     }
 
-    Card(String q, String a) {
+    public Card(String q, String a) {
         question = q;
         answer = a;
         include = true;
