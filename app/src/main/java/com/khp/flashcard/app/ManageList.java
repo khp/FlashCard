@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.khp.flashcard.app.dialogues.ChangeTextDialog;
 import com.khp.flashcard.app.dialogues.DeleteDialog;
+import com.khp.flashcard.app.dialogues.ExportDeckDialog;
 import com.khp.flashcard.app.model.Card;
 import com.khp.flashcard.app.model.Deck;
 
@@ -37,6 +38,7 @@ public class ManageList extends Activity {
     private ListViewAdapter adapter;
     private ChangeTextDialog textDialog;
     private Deck deck;
+    private ExportDeckDialog exportDialog;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -154,8 +156,10 @@ public class ManageList extends Activity {
                 deck.getDeck().add(new Card("Question", "Answer"));
                 save();
                 adapter.notifyDataSetChanged();
-            case R.id.action_save_deck:
-                save();
+            case R.id.action_export_deck:
+                exportDialog = new ExportDeckDialog();
+                exportDialog.setDeck(deck);
+                exportDialog.show(getFragmentManager(), "exportDialog");
                 return true;
             case android.R.id.home:
                 save();

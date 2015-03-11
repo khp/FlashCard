@@ -10,11 +10,14 @@
     <string name="action_new">New Package</string>
     <string name="action_open">Open Package</string>
     <string name="action_save">Save Package</string>
+    <string name="action_export">Export Package</string>
     <string name="dialog_title">Name your deck</string>
     <string name="dialog_yes">Create</string>
     <string name="dialog_no">Cancel</string>
     <string name="dialog_new_card_title">SetTextHere</string>
     <string name="dialog_delete">Delete</string>
+    <string name="dialog_export_title">Filename: </string>
+    <string name="dialog_export_msg">Exported as .csv file to default downloads folder</string>
     <string name="review_question">%1$s</string>
     <string name="review_answer">%1$s</string>
     <string name="review_answer_title">Answer: </string>

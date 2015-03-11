@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text="@string/dialog_export_msg"
+        android:textSize="15dp"
+        android:id="@+id/dialogMsg"
+        android:textColor="#000000"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="10pt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text="@string/dialog_export_title"
+        android:id="@+id/dialogTitle"
+        android:textColor="#000000"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="5pt"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialogField"
+        android:textColor="#000000"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text=""
+        android:textSize="15dp"
+        android:id="@+id/dialogOut"
+        android:textColor="#000000"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="5pt"/>
+</LinearLayout>

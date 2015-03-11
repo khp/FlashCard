@@ -1,6 +1,7 @@
 package com.khp.flashcard.app;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.khp.flashcard.app.dialogues.NewImportedDeckDialog;
 import com.khp.flashcard.app.fileio.CSVFilter;
 import com.khp.flashcard.app.model.Deck;
 import com.khp.flashcard.app.parser.CSVParser;
@@ -34,6 +36,7 @@ public class ImportDeck extends Activity {
     private ListView listView;
     private FileAdapter adapter;
     private CSVParser parser;
+    private NewImportedDeckDialog newDeckDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +86,11 @@ public class ImportDeck extends Activity {
             @Override
             public void onClick(View view) {
                 try {
+                    deck = new Deck("");
                     deck = parser.parse(FilesList.get(position));
-                    Intent i = new Intent(getContext(), ManageList.class);
-                    i.putExtra("Deck", (Parcelable) deck);
-                    startActivity(i);
+                    newDeckDialog = new NewImportedDeckDialog();
+                    newDeckDialog.setDeck(deck);
+                    newDeckDialog.show(getFragmentManager(), "newDeckDialog");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

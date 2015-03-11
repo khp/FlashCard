@@ -14,8 +14,8 @@
         android:title="@string/action_new"
         android:showAsAction="always"/>
     <item
-        android:id="@+id/action_save_deck"
-        android:icon="@drawable/ic_action_save"
-        android:title="@string/action_save"
+        android:id="@+id/action_export_deck"
+        android:icon="@drawable/ic_export"
+        android:title="@string/action_export"
         android:showAsAction="always"/>
 </menu>
