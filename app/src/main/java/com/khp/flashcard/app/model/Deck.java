@@ -87,6 +87,18 @@ public class Deck implements Parcelable, Serializable{
         this.title = title;
     }
 
+    public boolean isEmpty() {
+        if (this.deck.size() == 0) {
+            return true;
+        }
+        for (Card c : deck) {
+            if (c.isInclude()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int describeContents() {
         return 0;
